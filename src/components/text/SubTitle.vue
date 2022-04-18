@@ -2,5 +2,5 @@
 </script>
 
 <template>
-    <p class="text-blue-500 font-bold mb-4"><slot/></p>
+    <p class="text-blue-500 font-bold mb-1"><slot/></p>
 </template>
