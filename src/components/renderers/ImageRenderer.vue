@@ -32,7 +32,7 @@ function updateFromFile()
 }
 
 onMounted(() => updateFromFile())
-watch(() => controlStore.file, () => updateFromFile())
+watch([() => controlStore.file,() => controlStore.width,() => controlStore.height,() => controlStore.characters], () => updateFromFile())
 
 </script>
 
