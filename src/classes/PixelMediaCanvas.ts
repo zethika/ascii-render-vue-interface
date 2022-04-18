@@ -46,7 +46,7 @@ export default class PixelMediaCanvas{
         this._image.onload = () => {
             if(this._image !== null)
             {
-                this.getContext().drawImage(this._image, 20,20);
+                this.getContext().drawImage(this._image, this.width,this.height);
                 URL.revokeObjectURL(this._image.src)
             }
         }
