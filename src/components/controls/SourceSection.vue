@@ -14,7 +14,28 @@ function select()
     if(inputRef.value !== null && inputRef.value.files !== null && typeof inputRef.value.files[0] !== 'undefined' && inputRef.value.files[0] instanceof File)
         file = inputRef.value.files[0];
 
-    controlStore.file = file;
+    if(file !== null)
+    {
+        const secureFile = file;
+        const img = new Image();
+        const objectUrl = URL.createObjectURL(file);
+        img.onload = () => {
+
+            const aspectRatio = img.width/img.height;
+            controlStore.width = Math.floor(aspectRatio < 1 ? 100 : 100*aspectRatio);
+            controlStore.height = Math.floor(aspectRatio > 1 ? 100 : 100*aspectRatio);
+
+            controlStore.file = secureFile;
+            URL.revokeObjectURL(objectUrl);
+        };
+        img.src = objectUrl;
+    }
+    else
+    {
+        controlStore.file = file;
+    }
+
+
 }
 
 </script>
