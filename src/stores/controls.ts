@@ -6,7 +6,8 @@ export const useControlsStore = defineStore({
         file: null as null|File,
         width: 100,
         height: 100,
-        characters: 'Ñ@#W$9876543210?!abc;:+=-,._ '
+        characters: 'Ñ@#W$9876543210?!abc;:+=-,._ ',
+        lineHeight: 16
     }),
     getters: {
         charactersLength: (state) => state.characters.length
