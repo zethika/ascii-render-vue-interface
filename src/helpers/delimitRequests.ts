@@ -1,5 +1,4 @@
 /**
- *
  * @param id the string representing the delimit request
  * @param callback the callback function to call, accepts no parameters
  * @param delimit the time the timeout should wait between attempts, in milliseconds
