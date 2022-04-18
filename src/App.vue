@@ -4,7 +4,7 @@ import Controls from "@/components/structural/Controls.vue";
 </script>
 
 <template>
-    <div class="flex flex-col h-screen w-screen">
+    <div class="flex flex-row h-screen w-screen">
         <Renderer class="flex-grow"/>
         <Controls />
     </div>
