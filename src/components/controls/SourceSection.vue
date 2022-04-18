@@ -3,6 +3,7 @@ import SubTitle from "@/components/text/SubTitle.vue";
 import InputFilePreview from "@/components/image/InputFilePreview.vue";
 import {useControlsStore} from "@/stores/controls";
 import {ref} from "vue";
+import CheckboxInput from "@/components/inputs/CheckboxInput.vue";
 
 const controlStore = useControlsStore()
 
@@ -43,7 +44,10 @@ function select()
 <template>
     <div>
         <SubTitle>Source</SubTitle>
-        <input ref="inputRef" type="file" accept="image/*" maxlength="100000000" @change="select">
-        <InputFilePreview v-if="controlStore.file !== null" :file="controlStore.file" class="max-w-full max-h-[50px] mt-4" />
+        <CheckboxInput v-model="controlStore.useWebcam" label="Use Webcam?" class="mb-2" />
+        <template v-if="controlStore.useWebcam === false">
+            <input ref="inputRef" type="file" accept="image/*" maxlength="100000000" @change="select">
+            <InputFilePreview v-if="controlStore.file !== null" :file="controlStore.file" class="max-w-full max-h-[50px] mt-4" />
+        </template>
     </div>
 </template>
