@@ -1,5 +1,6 @@
 /// <reference types="webrtc" />
 import {RGBALiteral} from "@/index";
+import delimitRequests from "@/helpers/delimitRequests";
 
 export default class PixelMediaCanvas {
     private _canvas: HTMLCanvasElement;
@@ -79,37 +80,39 @@ export default class PixelMediaCanvas {
     }
 
     public startWebcam(initCallback: (video: HTMLVideoElement) => void, loopCallback: (instance: this) => void) {
-        const context = this.getContext();
-        const video = document.createElement("video");
-        this._video = video;
+        delimitRequests('start_webcam',() => {
+            const context = this.getContext();
+            if(this._video === null)
+                this._video = document.createElement("video");
 
-        let raf: number;
+            let raf: number;
 
-        const loop = () => {
-            context.drawImage(video, 0, 0, this.width, this.height);
-            loopCallback(this);
-            raf = requestAnimationFrame(loop);
-        }
+            const loop = () => {
+                context.drawImage(this._video as HTMLVideoElement, 0, 0, this.width, this.height);
+                loopCallback(this);
+                raf = requestAnimationFrame(loop);
+            }
 
-        navigator.mediaDevices.getUserMedia({audio: false, video: true})
-            .then((stream) => {
-                video.srcObject = stream;
-                video.onplaying = () => {
-                    initCallback(video);
-                    raf = requestAnimationFrame(loop);
-                };
-                video.onpause = function () {
-                    cancelAnimationFrame(raf);
-                }
-
-                video.play();
-            }, (error) => console.log("Video capture error: ", error));
+            navigator.mediaDevices.getUserMedia({audio: false, video: true})
+                .then((stream) => {
+                    this.stopWebcam();
+                    const video = this._video as HTMLVideoElement;
+                    video.srcObject = stream;
+                    video.onplaying = () => {
+                        initCallback(video);
+                        raf = requestAnimationFrame(loop);
+                    };
+                    video.onpause = function () {
+                        cancelAnimationFrame(raf);
+                    }
+                    video.play();
+                }, (error) => console.log("Video capture error: ", error));
+        },200);
     }
 
     public stopWebcam() {
         if (this._video !== null) {
             this._video.pause();
-            this._video = null;
         }
     }
 }
