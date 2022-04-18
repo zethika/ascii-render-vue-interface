@@ -7,15 +7,6 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                mint: {
-                    DEFAULT: "var(--mint)",
-                },
-                purple: {
-                    DEFAULT: "var(--purple)",
-                    dark: "var(--purple-dark)",
-                    darker: "var(--purple-darker)",
-                    darkest: "var(--purple-darkest)",
-                },
                 transparent: "transparent"
             },
             height: {
