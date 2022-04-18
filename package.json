@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/webrtc": "0.0.32",
     "pinia": "^2.0.13",
     "vue": "^3.2.25"
   },
