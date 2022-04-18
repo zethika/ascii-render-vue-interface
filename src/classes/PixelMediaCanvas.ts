@@ -48,7 +48,6 @@ export default class PixelMediaCanvas {
     public calculatePixelsArray() {
         const context = this.getContext();
         let pixelArray: Array<RGBALiteral> = [];
-        console.log();
         for (let y = 0; y < this.height; y++) {
             for (let x = 0; x < this.width; x++) {
                 const data = context.getImageData(x, y, 1, 1).data;
