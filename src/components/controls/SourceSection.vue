@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import SubTitle from "@/components/text/SubTitle.vue";
-import FileUpload from 'primevue/fileupload';
 import InputFilePreview from "@/components/image/InputFilePreview.vue";
 import {useControlsStore} from "@/stores/controls";
+import {ref} from "vue";
 
 const controlStore = useControlsStore()
 
-function select(e: any)
+const inputRef = ref<HTMLInputElement|null>(null)
+
+function select()
 {
     let file = null;
-    if(typeof e.files !== 'undefined' && typeof e.files[0] !== 'undefined' && e.files[0] instanceof File)
-        file = e.files[0];
+    if(inputRef.value !== null && inputRef.value.files !== null && typeof inputRef.value.files[0] !== 'undefined' && inputRef.value.files[0] instanceof File)
+        file = inputRef.value.files[0];
 
     controlStore.file = file;
 }
@@ -20,7 +22,7 @@ function select(e: any)
 <template>
     <div>
         <SubTitle>Source</SubTitle>
-        <FileUpload mode="basic" name="demo[]"  accept="image/*" :maxFileSize="100000000" @upload="() => null" @select="select" />
+        <input ref="inputRef" type="file" accept="image/*" maxlength="100000000" @change="select">
         <InputFilePreview v-if="controlStore.file !== null" :file="controlStore.file" class="max-w-full mt-4" />
     </div>
 </template>
