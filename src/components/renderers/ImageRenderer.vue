@@ -16,6 +16,10 @@ function triggerChange()
         pixelArray.value = [];
         return;
     }
+
+    mediaCanvas.width = controlStore.width;
+    mediaCanvas.height = controlStore.height;
+
     mediaCanvas.loadImageFromFile(controlStore.file)
         .then(() => {
             if(mediaCanvas.pixelsArray !== null)
