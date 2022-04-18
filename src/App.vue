@@ -5,7 +5,7 @@ import Controls from "@/components/structural/Controls.vue";
 </script>
 
 <template>
-    <div class="flex flex-row h-screen w-screen">
+    <div class="flex flex-row h-screen w-screen overflow-hidden">
         <Renderer class="flex-grow h-full"/>
         <Controls />
     </div>
