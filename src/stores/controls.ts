@@ -8,7 +8,8 @@ export const useControlsStore = defineStore({
         height: 100,
         characters: 'Ñ@#W$9876543210?!abc;:+=-,._ ',
         lineHeight: 16,
-        fontSize: 16
+        fontSize: 16,
+        useWebcam: false
     }),
     getters: {
         charactersLength: (state) => state.characters.length
