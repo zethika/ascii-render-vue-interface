@@ -23,6 +23,6 @@ function select()
     <div>
         <SubTitle>Source</SubTitle>
         <input ref="inputRef" type="file" accept="image/*" maxlength="100000000" @change="select">
-        <InputFilePreview v-if="controlStore.file !== null" :file="controlStore.file" class="max-w-full mt-4" />
+        <InputFilePreview v-if="controlStore.file !== null" :file="controlStore.file" class="max-w-full max-h-[50px] mt-4" />
     </div>
 </template>
