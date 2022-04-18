@@ -13,6 +13,7 @@ const controlsStore = useControlsStore();
         <div class="grid gap-2">
             <RegularInput v-model="controlsStore.width" label="Width" type="number" />
             <RegularInput v-model="controlsStore.height" label="Height" type="number" />
+            <RegularInput v-model="controlsStore.characters" label="Charcter set" type="text" />
             <RegularInput v-model="controlsStore.lineHeight" label="Line height" type="number" />
         </div>
     </div>
