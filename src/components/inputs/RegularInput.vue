@@ -52,7 +52,7 @@ function updateValue(e: InputEvent)
     if(inputRef.value === null)
         return;
 
-    emit('update:modelValue',inputRef.value.value)
+    emit('update:modelValue',props.type === 'number' ? parseFloat(inputRef.value.value) : inputRef.value.value)
 }
 </script>
 
