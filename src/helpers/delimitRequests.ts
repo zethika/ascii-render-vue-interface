@@ -5,7 +5,7 @@
  * @param delimit the time the timeout should wait between attempts, in milliseconds
  */
 const counts: Record<string, number> = {};
-export default function (id: string, callback: () => void, delimit: number){
+export default function delimitRequests(id: string, callback: () => void, delimit: number){
     if(typeof counts[id] === 'undefined')
         counts[id] = 0;
 
