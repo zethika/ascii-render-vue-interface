@@ -5,10 +5,6 @@ module.exports = {
         './src/App.vue',
     ],
     theme: {
-        screens: {
-            'xs': '475px',
-            ...screens,
-        },
         extend: {
             spacing: {
                 'header': '55px'
