@@ -47,7 +47,7 @@ const asciiString = computed(() => {
 
 <template>
     <div class="relative h-full w-full overflow-scroll">
-        <p v-html="asciiString" class="absolute top-0 left-0" :style="'font-family: \'Courier\'; line-height: '+controlStore.lineHeight+'px'"></p>
+        <p v-html="asciiString" class="absolute top-0 left-0" :style="'font-family: \'Courier\'; line-height: '+controlStore.lineHeight+'px;font-size: '+controlStore.fontSize+'px'"></p>
     </div>
 
 </template>
