@@ -14,14 +14,30 @@ const props = defineProps<{
 const asciiString = computed(() => {
     let string = '';
 
+    const fromMax = 255;
+    const fromMin = 0;
+
     props.pixelArray.forEach((rgba,index) => {
         if(index !== 0 && index % props.width === 0)
             string += "<br />";
-        const average = (rgba.r+rgba.g+rgba.b)/3;
-        const charIndex = Math.floor(mapValue(average,0,255,0,controlStore.charactersLength));
-        const char = controlStore.characters.charAt(charIndex);
-        string += char === ' ' ? '&nbsp;' : char;
 
+        const average = (rgba.a === 0) ? 255 : (rgba.r+rgba.g+rgba.b)/3;
+        let charIndex: number;
+        if(average <= fromMin)
+        {
+            charIndex = fromMin;
+        }
+        else if(average >= fromMax)
+        {
+            charIndex = fromMax;
+        }
+        else
+        {
+            charIndex = Math.floor(mapValue(average,fromMin,fromMax,0,controlStore.charactersLength));
+        }
+
+        let char = controlStore.characters.charAt(charIndex);
+        string += char === ' ' || char === '' ? '&nbsp;' : char;
     })
 
     return string;
